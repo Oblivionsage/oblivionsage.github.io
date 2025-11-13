@@ -1,25 +1,29 @@
 {{ define "main" }}
-<div class="container home">
-    <div class="intro">
-        <h1>{{ .Site.Title }}</h1>
-        <p>{{ .Site.Params.description }}</p>
+<div class="profile-container">
+    <div class="profile-content">
+        {{ if .Site.Params.profile.image }}
+        <img src="{{ .Site.Params.profile.image }}" alt="Profile" class="profile-image">
+        {{ end }}
+        
+        <h1 class="profile-name">{{ .Site.Title }}</h1>
+        
+        {{ if .Site.Params.profile.subtitle }}
+        <p class="profile-subtitle">{{ .Site.Params.profile.subtitle }}</p>
+        {{ end }}
+        
+        <p class="profile-description">{{ .Site.Params.description }}</p>
     </div>
     
-    <h2>Recent Posts</h2>
-    <div class="posts">
-        {{ range first 10 (where .Site.RegularPages "Type" "posts") }}
-        <article class="post-item">
-            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-            <time>{{ .Date.Format "January 2, 2006" }}</time>
-            {{ if .Params.tags }}
-            <div class="tags">
-                {{ range .Params.tags }}
-                <span class="tag">{{ . }}</span>
-                {{ end }}
-            </div>
+    <div class="recent-posts-section">
+        <h2>Recent Posts</h2>
+        <ul class="post-list">
+            {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+            <li class="post-list-item">
+                <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+            </li>
             {{ end }}
-        </article>
-        {{ end }}
+        </ul>
     </div>
 </div>
 {{ end }}

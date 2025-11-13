@@ -20,3 +20,7 @@ lineNos = true
 
 [markup.goldmark.renderer]
 unsafe = true
+
+[params.profile]
+image = "https://avatars.githubusercontent.com/u/yourusername"
+subtitle = "Security Researcher | CVE Hunter | Open Source Contributor"

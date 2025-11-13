@@ -60,18 +60,84 @@ nav {
     padding: 0 1rem;
 }
 
-.home .intro {
-    margin: 3rem 0;
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1rem 2rem;
 }
 
-.home .intro h1 {
+.profile-content {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--border);
+    margin-bottom: 1.5rem;
+}
+
+.profile-name {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    color: var(--text);
 }
 
-.home .intro p {
-    color: var(--text-secondary);
+.profile-subtitle {
+    color: var(--accent);
     font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.profile-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.recent-posts-section {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.recent-posts-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.post-list {
+    list-style: none;
+}
+
+.post-list-item {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.post-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    min-width: 100px;
+}
+
+.post-list-item a {
+    color: var(--text);
+    text-decoration: none;
+    flex: 1;
+}
+
+.post-list-item a:hover {
+    color: var(--accent);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -186,6 +252,16 @@ a:hover {
     margin: 1.5rem 0;
 }
 
+.post-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+.post-content h3 {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+}
+
 footer {
     max-width: 800px;
     margin: 4rem auto 2rem;
@@ -205,11 +281,25 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
-    .home .intro h1 {
+    .profile-name {
         font-size: 2rem;
+    }
+    
+    .profile-image {
+        width: 120px;
+        height: 120px;
     }
     
     .nav-links a {
         margin-left: 1rem;
+    }
+    
+    .post-list-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .post-date {
+        min-width: auto;
     }
 }
