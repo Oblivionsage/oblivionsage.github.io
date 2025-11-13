@@ -132,31 +132,52 @@ nav {
     margin-top: 0.25rem;
 }
 
-.sidebar-skills {
+.sidebar-skills,
+.sidebar-tools {
     margin: 1.5rem 0;
+    padding: 1rem 0;
 }
 
-.sidebar-skills h3 {
-    font-size: 1rem;
+.sidebar-skills h3,
+.sidebar-tools h3 {
+    font-size: 0.95rem;
     margin-bottom: 1rem;
     color: var(--text);
+    text-align: center;
 }
 
-.tech-icons {
+.tech-icons,
+.tool-icons {
     display: flex;
     justify-content: center;
-    gap: 0.8rem;
+    align-items: center;
+    gap: 0.7rem;
     flex-wrap: wrap;
+    padding: 0 0.5rem;
 }
 
-.tech-icons img {
+.tech-icons img,
+.tool-icons img {
     width: 32px;
     height: 32px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, filter 0.2s;
+    object-fit: contain;
 }
 
-.tech-icons img:hover {
-    transform: scale(1.1);
+.tech-icons img:hover,
+.tool-icons img:hover {
+    transform: scale(1.15);
+    filter: brightness(1.2);
+}
+
+.sidebar-skills {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+}
+
+.sidebar-tools:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
 }
 
 .sidebar-social {
