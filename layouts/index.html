@@ -1,56 +1,67 @@
 {{ define "main" }}
-<div class="profile-container">
-    <div class="profile-content">
-        {{ if .Site.Params.profile.image }}
-        <img src="{{ .Site.Params.profile.image }}" alt="Profile" class="profile-image">
-        {{ end }}
-        
-        <h1 class="profile-name">{{ .Site.Title }}</h1>
-        
-        {{ if .Site.Params.profile.subtitle }}
-        <p class="profile-subtitle">{{ .Site.Params.profile.subtitle }}</p>
-        {{ end }}
-        
-        <p class="profile-description">{{ .Site.Params.description }}</p>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Published CVEs</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="total-repos">-</div>
-                <div class="stat-label">Public Repos</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="total-contributions">-</div>
-                <div class="stat-label">Contributions</div>
-            </div>
-        </div>
-        
-        <div class="skills-section">
-            <h3>Technologies</h3>
-            <div class="skills">
-                <span class="skill">C++</span>
-                <span class="skill">Rust</span>
-                <span class="skill">Go</span>
-                <span class="skill">Python</span>
-                <span class="skill">Assembly</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="recent-posts-section">
-        <h2>Recent Posts</h2>
-        <ul class="post-list">
-            {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
-            <li class="post-list-item">
-                <span class="post-date">{{ .Date.Format "Jan 2, 2006" }}</span>
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-            </li>
+<div class="sidebar-layout">
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            {{ if .Site.Params.profile.image }}
+            <img src="{{ .Site.Params.profile.image }}" alt="Profile" class="sidebar-image">
             {{ end }}
-        </ul>
-    </div>
+            
+            <h1 class="sidebar-name">{{ .Site.Title }}</h1>
+            
+            {{ if .Site.Params.profile.subtitle }}
+            <p class="sidebar-subtitle">{{ .Site.Params.profile.subtitle }}</p>
+            {{ end }}
+            
+            <p class="sidebar-description">{{ .Site.Params.description }}</p>
+            
+            <div class="sidebar-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="total-repos">-</span>
+                    <span class="stat-label">Repos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="total-contributions">-</span>
+                    <span class="stat-label">Contributions</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-skills">
+                <h3>Technologies</h3>
+                <div class="tech-icons">
+                    <img src="/icons/cpp.svg" alt="C++" title="C++">
+                    <img src="/icons/rust.svg" alt="Rust" title="Rust">
+                    <img src="/icons/go.svg" alt="Go" title="Go">
+                    <img src="/icons/python.svg" alt="Python" title="Python">
+                    <img src="/icons/assembly.svg" alt="Assembly" title="Assembly">
+                </div>
+            </div>
+            
+            <div class="sidebar-social">
+                {{ range .Site.Params.social }}
+                <a href="{{ .url }}" target="_blank">{{ .name }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </aside>
+    
+    <main class="main-content">
+        <h2 class="content-title">Recent Posts</h2>
+        <div class="posts-list">
+            {{ range first 10 (where .Site.RegularPages "Type" "posts") }}
+            <article class="post-card">
+                <time class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</time>
+                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                {{ if .Params.tags }}
+                <div class="post-tags">
+                    {{ range .Params.tags }}
+                    <span class="tag">{{ . }}</span>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </article>
+            {{ end }}
+        </div>
+    </main>
 </div>
 
 <script>
