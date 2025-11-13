@@ -57,6 +57,23 @@ nav {
     font-weight: 600;
     color: var(--text);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+}
+
+.logo-text {
+    color: var(--text);
+}
+
+.logo-cursor {
+    color: var(--text);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 .nav-links a {

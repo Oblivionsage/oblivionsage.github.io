@@ -10,7 +10,10 @@
 <body>
     <header>
         <nav>
-            <a href="/" class="logo">{{ .Site.Title }}</a>
+            <a href="/" class="logo">
+                <span class="logo-text">root@{{ .Site.Title }}</span>
+                <span class="logo-cursor">_</span>
+            </a>
             <div class="nav-links">
                 <a href="/posts">Posts</a>
                 <a href="/about">About</a>
