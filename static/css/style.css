@@ -76,8 +76,20 @@ nav {
 }
 
 .sidebar::-webkit-scrollbar {
-    width: 0;
-    display: none;
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
 }
 
 .sidebar-content {
@@ -160,11 +172,17 @@ nav {
     padding: 0 0.3rem;
 }
 
+/* For toolbox section with more items, use 3 columns on larger screens */
+.sidebar-tools:last-of-type .tool-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .tool-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.3rem;
+    padding: 0.3rem;
 }
 
 .tool-item img {
@@ -183,6 +201,7 @@ nav {
     font-size: 0.68rem;
     color: var(--text-secondary);
     text-align: center;
+    line-height: 1.1;
 }
 
 .sidebar-skills {
