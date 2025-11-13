@@ -73,27 +73,18 @@ nav {
     bottom: 0;
     overflow-y: auto;
     overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .sidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 3px;
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-    background: var(--text-secondary);
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 .sidebar-content {
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.6rem;
     text-align: center;
     border-bottom: 1px solid var(--border);
     display: flex;
@@ -102,106 +93,112 @@ nav {
 }
 
 .sidebar-image {
-    width: 70px;
-    height: 70px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     border: 2px solid var(--border);
-    margin: 0 auto 0.5rem;
+    margin: 0 auto 0.3rem;
     display: block;
 }
 
 .sidebar-name {
-    font-size: 1.3rem;
-    margin-bottom: 0.4rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
     color: var(--text);
-    line-height: 1.1;
+    line-height: 1;
 }
 
 .sidebar-subtitle {
     color: var(--accent);
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
+    font-size: 0.65rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.1;
 }
 
 .sidebar-description {
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin-bottom: 0;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 .sidebar-skills,
 .sidebar-tools {
     margin: 0;
-    padding: 1rem 0.8rem;
+    padding: 0.5rem 0.5rem;
 }
 
 .sidebar-skills h3,
 .sidebar-tools h3 {
-    font-size: 0.85rem;
-    margin-bottom: 0.8rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
     color: var(--text);
     text-align: center;
+    font-weight: 600;
 }
 
 .tech-icons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.4rem;
     flex-wrap: wrap;
 }
 
 .tech-icons img {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     transition: transform 0.2s, filter 0.2s;
     object-fit: contain;
 }
 
 .tech-icons img:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
     filter: brightness(1.2);
 }
 
 .tool-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-    padding: 0 0.3rem;
+    gap: 0.35rem;
+    padding: 0;
 }
 
-/* For toolbox section with more items, use 3 columns on larger screens */
-.sidebar-tools:last-of-type .tool-grid {
+.fuzzing-grid {
     grid-template-columns: repeat(2, 1fr);
+}
+
+.toolbox-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.3rem;
 }
 
 .tool-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.3rem;
-    padding: 0.3rem;
+    gap: 0.2rem;
+    padding: 0.15rem;
 }
 
 .tool-item img {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     transition: transform 0.2s, filter 0.2s;
     object-fit: contain;
 }
 
 .tool-item img:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
     filter: brightness(1.2);
 }
 
 .tool-item span {
-    font-size: 0.68rem;
+    font-size: 0.58rem;
     color: var(--text-secondary);
     text-align: center;
-    line-height: 1.1;
+    line-height: 1;
+    white-space: nowrap;
 }
 
 .sidebar-skills {
@@ -214,7 +211,7 @@ nav {
 
 .sidebar-social {
     margin: 0;
-    padding: 1rem 0.8rem;
+    padding: 0.6rem;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: center;
@@ -223,16 +220,23 @@ nav {
 
 .sidebar-social a {
     display: block;
-    transition: transform 0.2s;
+    transition: transform 0.2s, filter 0.2s;
 }
 
 .sidebar-social a:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
+    filter: brightness(1.3);
 }
 
 .sidebar-social img {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(86%) sepia(6%) saturate(354%) hue-rotate(182deg) brightness(92%) contrast(86%);
+}
+
+.sidebar-social a:hover img {
+    filter: brightness(0) saturate(100%) invert(58%) sepia(95%) saturate(1969%) hue-rotate(191deg) brightness(103%) contrast(101%);
 }
 
 .main-content {
