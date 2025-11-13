@@ -75,51 +75,60 @@ nav {
     overflow-x: hidden;
 }
 
+.sidebar::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}
+
 .sidebar-content {
-    padding: 1.5rem 1.2rem;
+    padding: 1rem 1rem;
     text-align: center;
     border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sidebar-image {
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 2px solid var(--border);
-    margin-bottom: 0.8rem;
+    margin: 0 auto 0.5rem;
+    display: block;
 }
 
 .sidebar-name {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
     color: var(--text);
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .sidebar-subtitle {
     color: var(--accent);
-    font-size: 0.8rem;
-    margin-bottom: 0.8rem;
-    line-height: 1.3;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
 }
 
 .sidebar-description {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     margin-bottom: 0;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 .sidebar-skills,
 .sidebar-tools {
     margin: 0;
-    padding: 1.2rem 1rem;
+    padding: 1rem 0.8rem;
 }
 
 .sidebar-skills h3,
 .sidebar-tools h3 {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
     color: var(--text);
     text-align: center;
 }
@@ -128,50 +137,50 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
     flex-wrap: wrap;
 }
 
 .tech-icons img {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     transition: transform 0.2s, filter 0.2s;
     object-fit: contain;
 }
 
 .tech-icons img:hover {
-    transform: scale(1.15);
+    transform: scale(1.1);
     filter: brightness(1.2);
 }
 
 .tool-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-    padding: 0 0.5rem;
+    gap: 0.6rem;
+    padding: 0 0.3rem;
 }
 
 .tool-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
 }
 
 .tool-item img {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     transition: transform 0.2s, filter 0.2s;
     object-fit: contain;
 }
 
 .tool-item img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     filter: brightness(1.2);
 }
 
 .tool-item span {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--text-secondary);
     text-align: center;
 }
@@ -186,11 +195,11 @@ nav {
 
 .sidebar-social {
     margin: 0;
-    padding: 1.2rem 1rem;
+    padding: 1rem 0.8rem;
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 1rem;
 }
 
 .sidebar-social a {
@@ -199,12 +208,12 @@ nav {
 }
 
 .sidebar-social a:hover {
-    transform: scale(1.15);
+    transform: scale(1.1);
 }
 
 .sidebar-social img {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
 }
 
 .main-content {
