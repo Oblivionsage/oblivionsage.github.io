@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="container home">
+    <div class="intro">
+        <h1>{{ .Site.Title }}</h1>
+        <p>{{ .Site.Params.description }}</p>
+    </div>
+    
+    <h2>Recent Posts</h2>
+    <div class="posts">
+        {{ range first 10 (where .Site.RegularPages "Type" "posts") }}
+        <article class="post-item">
+            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+            <time>{{ .Date.Format "January 2, 2006" }}</time>
+            {{ if .Params.tags }}
+            <div class="tags">
+                {{ range .Params.tags }}
+                <span class="tag">{{ . }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

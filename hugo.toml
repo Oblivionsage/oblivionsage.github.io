@@ -1,0 +1,22 @@
+baseURL = "https://oblivionsage.github.io/"
+languageCode = "en-us"
+title = "oblivionsage"
+
+[params]
+description = "Security Research & Vulnerability Analysis"
+author = "oblivionsage"
+
+[[params.social]]
+name = "GitHub"
+url = "https://github.com/oblivionsage"
+
+[[params.social]]
+name = "Twitter"
+url = "https://twitter.com/theoblivionsage"
+
+[markup.highlight]
+style = "monokai"
+lineNos = true
+
+[markup.goldmark.renderer]
+unsafe = true
