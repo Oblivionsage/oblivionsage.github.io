@@ -1,31 +1,18 @@
-{{ define "main" }}
-<div class="sidebar-layout">
-    <aside class="sidebar">
-        <div class="sidebar-content">
-            {{ if .Site.Params.profile.image }}
-            <img src="{{ .Site.Params.profile.image }}" alt="Profile" class="sidebar-image">
-            {{ end }}
-            
-            <h1 class="sidebar-name">{{ .Site.Title }}</h1>
-            
-            {{ if .Site.Params.profile.subtitle }}
-            <p class="sidebar-subtitle">{{ .Site.Params.profile.subtitle }}</p>
-            {{ end }}
-            
-            <p class="sidebar-description">{{ .Site.Params.description }}</p>
-            
-            <div class="sidebar-stats">
-                <div class="stat-item">
-                    <span class="stat-value" id="total-repos">-</span>
-                    <span class="stat-label">Repos</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value" id="total-contributions">-</span>
-                    <span class="stat-label">Contributions</span>
-                </div>
-            </div>
-            
-           <div class="sidebar-skills">
+<div class="profile-content">
+    {{ if .Site.Params.profile.image }}
+    <img src="{{ .Site.Params.profile.image }}" alt="Profile" class="sidebar-image">
+    {{ end }}
+    
+    <h1 class="sidebar-name">{{ .Site.Title }}</h1>
+    
+    {{ if .Site.Params.profile.subtitle }}
+    <p class="sidebar-subtitle">{{ .Site.Params.profile.subtitle }}</p>
+    {{ end }}
+    
+    <p class="sidebar-description">{{ .Site.Params.description }}</p>
+</div>
+
+<div class="sidebar-skills">
     <h3>Technologies</h3>
     <div class="tech-icons">
         <img src="https://cdn.simpleicons.org/c/A8B9CC" alt="C" title="C">
@@ -39,77 +26,52 @@
 
 <div class="sidebar-tools">
     <h3>Security Tools</h3>
-    <div class="tool-icons">
-        <img src="https://media.wired.com/photos/5c7f358c25da720469976787/1:1/w_1543,h_1543,c_limit/ghidra.jpg" alt="Ghidra" title="Ghidra">
-        <img src="https://www.svgrepo.com/show/454430/burpsuite-security-software.svg" alt="Burp Suite" title="Burp Suite">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9WBpE_F03UKsBuzYqW-lo1XGMMhM7ohZvbA&s" alt="radare2" title="radare2">
-        <img src="https://cdn.simpleicons.org/wireshark/1679A7" alt="Wireshark" title="Wireshark">
+    <div class="tool-grid">
+        <div class="tool-item">
+            <img src="https://media.wired.com/photos/5c7f358c25da720469976787/1:1/w_1543,h_1543,c_limit/ghidra.jpg" alt="Ghidra">
+            <span>Ghidra</span>
+        </div>
+        <div class="tool-item">
+            <img src="https://www.svgrepo.com/show/454430/burpsuite-security-software.svg" alt="Burp Suite">
+            <span>Burp Suite</span>
+        </div>
+        <div class="tool-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9WBpE_F03UKsBuzYqW-lo1XGMMhM7ohZvbA&s" alt="radare2">
+            <span>radare2</span>
+        </div>
+        <div class="tool-item">
+            <img src="https://cdn.simpleicons.org/wireshark/1679A7" alt="Wireshark">
+            <span>Wireshark</span>
+        </div>
     </div>
 </div>
 
 <div class="sidebar-tools">
     <h3>Infrastructure</h3>
-    <div class="tool-icons">
-        <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux" title="Linux">
-        <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" title="Docker">
-        <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" title="Git">
+    <div class="tool-grid">
+        <div class="tool-item">
+            <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux">
+            <span>Linux</span>
+        </div>
+        <div class="tool-item">
+            <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker">
+            <span>Docker</span>
+        </div>
+        <div class="tool-item">
+            <img src="https://cdn.simpleicons.org/git/F05032" alt="Git">
+            <span>Git</span>
+        </div>
     </div>
 </div>
-            
-            <div class="sidebar-social">
-                {{ range .Site.Params.social }}
-                <a href="{{ .url }}" target="_blank">{{ .name }}</a>
-                {{ end }}
-            </div>
-        </div>
-    </aside>
-    
-    <main class="main-content">
-        <h2 class="content-title">Recent Posts</h2>
-        <div class="posts-list">
-            {{ range first 10 (where .Site.RegularPages "Type" "posts") }}
-            <article class="post-card">
-                <time class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</time>
-                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                {{ if .Params.tags }}
-                <div class="post-tags">
-                    {{ range .Params.tags }}
-                    <span class="tag">{{ . }}</span>
-                    {{ end }}
-                </div>
-                {{ end }}
-            </article>
-            {{ end }}
-        </div>
-    </main>
+
+<div class="sidebar-social">
+    <a href="https://github.com/oblivionsage" target="_blank" title="GitHub">
+        <img src="https://cdn.simpleicons.org/github/c9d1d9" alt="GitHub">
+    </a>
+    <a href="https://twitter.com/theoblivionsage" target="_blank" title="Twitter">
+        <img src="https://cdn.simpleicons.org/x/c9d1d9" alt="Twitter">
+    </a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">
+        <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn">
+    </a>
 </div>
-
-<script>
-const username = 'oblivionsage';
-
-async function fetchGitHubStats() {
-    try {
-        const userRes = await fetch(`https://api.github.com/users/${username}`);
-        const userData = await userRes.json();
-        
-        document.getElementById('total-repos').textContent = userData.public_repos || '-';
-        
-        const eventsRes = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100`);
-        const events = await eventsRes.json();
-        
-        const contributions = events.filter(e => 
-            e.type === 'PushEvent' || 
-            e.type === 'PullRequestEvent' || 
-            e.type === 'IssuesEvent'
-        ).length;
-        
-        document.getElementById('total-contributions').textContent = `${contributions}+`;
-    } catch (error) {
-        console.error('Failed to fetch GitHub stats:', error);
-    }
-}
-
-fetchGitHubStats();
-</script>
-{{ end }}
-              
