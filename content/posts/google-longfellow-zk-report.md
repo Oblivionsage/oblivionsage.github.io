@@ -1,3 +1,10 @@
+---
+title: "Finding a DoS in Google's Longfellow-ZK (And Getting Rejected)"
+date: September 8 - 2025
+tags: ["DoS", "Memory Safety", "Zero Knowledge"]
+---
+
+
 # Finding a DoS in Google's Longfellow-ZK (And Getting Rejected)
 
 ## TL;DR
