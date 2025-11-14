@@ -1,7 +1,7 @@
 ---
 title: "Finding a DoS in Google's Longfellow-ZK (And Getting Rejected)"
 date: 08/09/2025
-tags: ["DoS", "MemorySafety", "ZeroKnowledgeProtocol" "ReverseEngineering"]
+tags: ["DoS", "MemorySafety", "ZeroKnowledgeProtocol", "ReverseEngineering"]
 ---
 
 
