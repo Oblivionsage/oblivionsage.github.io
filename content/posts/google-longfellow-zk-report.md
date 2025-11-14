@@ -22,11 +22,14 @@ You know what that means? Fresh code, security reviews still ongoing, perfect ti
 ## Initial Recon
 
 First thing I did was clone the repo and start poking around:
+
 ```bash
 git clone https://github.com/google/longfellow-zk.git
 cd longfellow-zk
 tree -d -L 2
 ```
+<img width="376" height="538" alt="image" src="https://github.com/user-attachments/assets/070ce7b8-6897-4068-9b30-eb427f5d991d" />
+
 
 The library is header-only C++, organized into modules like:
 - `algebra/` - field arithmetic
@@ -39,6 +42,8 @@ I started with the usual suspects - searching for common vulnerability patterns:
 grep -r "TODO\|FIXME\|XXX" lib/
 grep -r "unsafe\|vulnerable" lib/
 ```
+<img width="890" height="325" alt="image" src="https://github.com/user-attachments/assets/7018623d-2b36-4932-82ba-ffb2f0988dda" />
+
 
 Nothing super interesting in the TODOs. But then I noticed something in the utility functions...
 
@@ -58,12 +63,41 @@ inline void check(bool truth, const char* why) {
 }
 ```
 
+<img width="626" height="656" alt="image" src="https://github.com/user-attachments/assets/ca8a1f8f-c160-40a4-9ad0-869cb35353ae" />
+
+
 Now, calling `abort()` directly is already a red flag. But where is this being used?
+
+
 ```bash
 grep -r "check(" lib/ | wc -l
 ```
+<img width="405" height="199" alt="image" src="https://github.com/user-attachments/assets/8e5fa1bd-85e3-40c3-9bc4-7d4c5f1a2cf5" />
 
-Tons of places. Let me look at one specific case in the field arithmetic code (`lib/algebra/fp_generic.h`):
+
+173 uses! This `check()` function is all over the codebase. Let me look at some specific cases:
+
+```bash
+grep -r "check(" lib/
+```
+
+One particular usage caught my eye in the field arithmetic code...
+
+<img width="850" height="699" alt="image" src="https://github.com/user-attachments/assets/5d332208-e832-4ed1-9447-66b9b7d04daf" />
+
+This one immediately caught my attention:
+
+```
+lib/algebra/fp_generic.h: check(a < m_, "of_scalar must be less than m");
+```
+
+This is doing input validation on field values. Let me look at the actual code:
+
+```bash
+cat lib/algebra/fp_generic.h | grep -A 5 "of_scalar_field"
+```
+<img width="714" height="574" alt="image" src="https://github.com/user-attachments/assets/58eb391c-9409-49f5-a27e-3c17b4a04d80" />
+
 ```cpp
 Elt of_scalar_field(const N& a) const {
     check(a < m_, "of_scalar must be less than m");
@@ -71,8 +105,9 @@ Elt of_scalar_field(const N& a) const {
 }
 ```
 
-So here's what happens: if you try to create a field element with an invalid value, the library doesn't return an error or throw an exception - it just kills your entire process with `abort()`.
+Wait, so if someone passes an invalid field value... this `check()` function gets called... which calls `abort()`... which **terminates the entire process**?
 
-That's a textbook denial of service.
+<img width="1024" height="1024" alt="c85fcc99-fbf8-4be4-b992-5dfb55183cf3" src="https://github.com/user-attachments/assets/ebcfdc3d-1431-4019-b3ad-97a561e99994" />
+
 
 ---
