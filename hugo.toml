@@ -15,12 +15,14 @@ name = "Twitter"
 url = "https://twitter.com/theoblivionsage"
 
 [markup.highlight]
-style = "monokai"
+style = "github-dark"
 lineNos = true
+lineNumbersInTable = false
+noClasses = true
 
 [markup.goldmark.renderer]
 unsafe = true
 
 [params.profile]
 image = "https://avatars.githubusercontent.com/u/126214490?v=4"
-subtitle = "Security Researcher | CVE Hunter | Open Source Contributor"
+subtitle = "Security Researcher | CVE Contributor | Open Source Contributor"
