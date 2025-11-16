@@ -107,7 +107,7 @@ Elt of_scalar_field(const N& a) const {
 
 Wait, so if someone passes an invalid field value... this `check()` function gets called... which calls `abort()`... which **terminates the entire process**?
 
-<img width="1024" height="1024" alt="c85fcc99-fbf8-4be4-b992-5dfb55183cf3" src="https://github.com/user-attachments/assets/ebcfdc3d-1431-4019-b3ad-97a561e99994" />
+<img width="512" height="512" alt="c85fcc99-fbf8-4be4-b992-5dfb55183cf3" src="https://github.com/user-attachments/assets/ebcfdc3d-1431-4019-b3ad-97a561e99994" />
 
 
 ---
