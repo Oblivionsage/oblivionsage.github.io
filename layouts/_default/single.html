@@ -1,10 +1,12 @@
 {{ define "main" }}
 <article>
     <h1>{{ .Title }}</h1>
+    {{ if ne .Params.showDate false }}
     <div class="post-meta">
         <span class="post-date">{{ .Date.Format "January 2, 2006" }}</span>
         <span class="reading-time">· {{ math.Round (div (countwords .Content) 200.0) }} min read</span>
     </div>
+    {{ end }}
     {{ with .Params.tags }}
     <div class="post-tags">
         {{ range . }}
