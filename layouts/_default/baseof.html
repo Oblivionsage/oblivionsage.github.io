@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+    <link rel="stylesheet" href="/css/terminal.css">
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta property="og:image" content="/og-image.png">
+    {{ with .OutputFormats.Get "rss" -}}
+    <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
+    {{- end }}
+</head>
+<body>
+    <div class="container">
+        <header class="terminal-header">
+            <a href="/" class="logo-link">
+                <span class="terminal-logo">root@oblivionsage<span class="cursor">_</span></span>
+            </a>
+            <span class="terminal-bar">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="theme-icon" viewBox="0 0 100 100" width="24" height="24">
+                    <circle cx="50" cy="50" r="45" fill="currentColor" stroke="currentColor" stroke-width="4"/>
+                    <path d="M50 5 A45 45 0 0 1 50 95" fill="var(--background)"/>
+                </svg>
+            </button>
+        </header>
+        
+        <nav class="nav">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/posts/">Posts</a>
+            <a href="/tags/">Tags</a>
+            <a href="/pgp/">PGP</a>
+        </nav>
+
+        <main>
+            {{ block "main" . }}{{ end }}
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/oblivionsage" target="_blank">GitHub</a>
+                <a href="https://x.com/theoblivionsage" target="_blank">X</a>
+                <a href="https://linkedin.com/in/haliloktay" target="_blank">LinkedIn</a>
+                <a href="mailto:cookieandcream560@gmail.com">Email</a>
+                <a href="/index.xml" target="_blank">RSS</a>
+            </div>
+            <p class="copyright">© 2025 oblivionsage. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Copy code button
+        document.querySelectorAll('pre').forEach(block => {
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.textContent = 'Copy';
+            button.addEventListener('click', () => {
+                navigator.clipboard.writeText(block.querySelector('code').textContent);
+                button.textContent = 'Copied!';
+                setTimeout(() => button.textContent = 'Copy', 2000);
+            });
+            block.style.position = 'relative';
+            block.appendChild(button);
+        });
+    </script>
+</body>
+</html>

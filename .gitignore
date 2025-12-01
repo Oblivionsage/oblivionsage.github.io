@@ -1,0 +1,10 @@
+public/
+resources/
+.hugo_build.lock
+*.pem
+*.key
+*secret*
+*private*
+*sifre*
+.env
+.DS_Store

@@ -1,0 +1,16 @@
+baseURL = 'https://oblivionsage.github.io/'
+languageCode = 'en-us'
+title = 'oblivionsage'
+
+[params]
+  description = 'Vulnerability Research & Cybersecurity — Reversing · Fuzzing · C/C++ · Assembly'
+
+[taxonomies]
+  tag = 'tags'
+
+[markup]
+  [markup.highlight]
+    style = 'github-dark'
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
