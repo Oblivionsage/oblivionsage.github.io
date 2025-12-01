@@ -31,53 +31,91 @@
     <!-- Progress Bar -->
     <div class="progress-bar" id="progress-bar"></div>
 
-    <div class="container">
-        <header class="terminal-header">
-            <a href="/" class="logo-link">
-                <span class="terminal-logo">root@oblivionsage<span class="cursor">_</span></span>
-            </a>
-            <span class="terminal-bar">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                <svg class="theme-icon" viewBox="0 0 100 100" width="24" height="24">
-                    <circle cx="50" cy="50" r="45" fill="currentColor" stroke="currentColor" stroke-width="4"/>
-                    <path d="M50 5 A45 45 0 0 1 50 95" fill="var(--background)"/>
-                </svg>
-            </button>
-        </header>
-        
-        <nav class="nav">
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/posts/">Posts</a>
-            <a href="/cves/">CVEs</a>
-            <a href="/tags/">Tags</a>
-            <a href="/pgp/">PGP</a>
-            <button class="search-btn" onclick="toggleSearch()">Search</button>
-        </nav>
+    <div class="page-wrapper">
+        <div class="container">
+            <header class="terminal-header">
+                <a href="/" class="logo-link">
+                    <span class="terminal-logo">root@oblivionsage<span class="cursor">_</span></span>
+                </a>
+                <span class="terminal-bar">||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</span>
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 100 100" width="24" height="24">
+                        <circle cx="50" cy="50" r="45" fill="currentColor" stroke="currentColor" stroke-width="4"/>
+                        <path d="M50 5 A45 45 0 0 1 50 95" fill="var(--background)"/>
+                    </svg>
+                </button>
+            </header>
+            
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/about/">About</a>
+                <a href="/posts/">Posts</a>
+                <a href="/cves/">CVEs</a>
+                <a href="/tags/">Tags</a>
+                <a href="/pgp/">PGP</a>
+            </nav>
 
-        <!-- Search Box -->
-        <div class="search-container" id="search-container">
-            <input type="text" id="search-input" placeholder="Search posts..." onkeyup="searchPosts()">
-            <div class="search-results" id="search-results"></div>
-        </div>
+            <div class="content-wrapper">
+                <main>
+                    {{ block "main" . }}{{ end }}
+                </main>
 
-        <main>
-            {{ block "main" . }}{{ end }}
-        </main>
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">search</div>
+                        <input type="text" class="sidebar-search" id="sidebar-search" placeholder="Type to search..." onkeyup="sidebarSearch()">
+                        <div class="sidebar-search-results" id="sidebar-search-results"></div>
+                    </div>
 
-        <footer class="footer">
-            <div class="footer-links">
-                <a href="https://github.com/oblivionsage" target="_blank">GitHub</a>
-                <a href="https://x.com/theoblivionsage" target="_blank">X</a>
-                <a href="https://linkedin.com/in/haliloktay" target="_blank">LinkedIn</a>
-                <a href="mailto:cookieandcream560@gmail.com">Email</a>
-                <a href="/index.xml" target="_blank">RSS</a>
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">latest posts</div>
+                        <div class="sidebar-posts">
+                            {{ range first 5 (where .Site.RegularPages "Section" "posts") }}
+                            <a href="{{ .Permalink }}" class="sidebar-post">
+                                <span class="sidebar-post-title">{{ .Title }}</span>
+                                <span class="sidebar-post-date">{{ .Date.Format "01-02" }}</span>
+                            </a>
+                            {{ end }}
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">navigation</div>
+                        <div class="sidebar-links">
+                            <a href="/about/">↳ about me</a>
+                            <a href="/cves/">↳ my cves</a>
+                            <a href="/pgp/">↳ pgp key</a>
+                            <a href="https://github.com/oblivionsage" target="_blank">↳ github</a>
+                            <a href="https://x.com/theoblivionsage" target="_blank">↳ twitter/x</a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">site info</div>
+                        <div class="sidebar-info">
+                            <span>{{ len (where .Site.RegularPages "Section" "posts") }} posts total</span>
+                        </div>
+                    </div>
+
+                    <button class="sidebar-top-btn" onclick="scrollToTop()">↑ back to top</button>
+                </aside>
             </div>
-            <p class="copyright">© 2025 oblivionsage. All rights reserved.</p>
-        </footer>
+
+            <footer class="footer">
+                <div class="footer-links">
+                    <a href="https://github.com/oblivionsage" target="_blank">GitHub</a>
+                    <a href="https://x.com/theoblivionsage" target="_blank">X</a>
+                    <a href="https://linkedin.com/in/haliloktay" target="_blank">LinkedIn</a>
+                    <a href="mailto:cookieandcream560@gmail.com">Email</a>
+                    <a href="/index.xml" target="_blank">RSS</a>
+                </div>
+                <p class="copyright">© 2025 oblivionsage. All rights reserved.</p>
+            </footer>
+        </div>
     </div>
 
-    <!-- Back to Top -->
+    <!-- Back to Top (mobile) -->
     <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</button>
 
     <!-- Lightbox -->
@@ -99,14 +137,13 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
-        // Progress bar
+        // Progress bar & back to top
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('progress-bar').style.width = scrolled + '%';
             
-            // Back to top visibility
             const btn = document.getElementById('back-to-top');
             if (winScroll > 300) {
                 btn.classList.add('visible');
@@ -119,7 +156,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Search
+        // Sidebar Search
         let searchIndex = [];
 
         async function loadSearchIndex() {
@@ -131,17 +168,9 @@
             }
         }
 
-        function toggleSearch() {
-            const container = document.getElementById('search-container');
-            container.classList.toggle('active');
-            if (container.classList.contains('active')) {
-                document.getElementById('search-input').focus();
-            }
-        }
-
-        function searchPosts() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const results = document.getElementById('search-results');
+        function sidebarSearch() {
+            const query = document.getElementById('sidebar-search').value.toLowerCase();
+            const results = document.getElementById('sidebar-search-results');
             
             if (query.length < 2) {
                 results.innerHTML = '';
@@ -155,27 +184,17 @@
             );
 
             if (matches.length === 0) {
-                results.innerHTML = '<div class="search-result-item">No results found</div>';
+                results.innerHTML = '<div class="sidebar-no-results">No results</div>';
                 return;
             }
 
-            results.innerHTML = matches.map(post => 
-                `<a href="${post.permalink}" class="search-result-item">
-                    <span class="search-result-title">${post.title}</span>
-                    <span class="search-result-date">${post.date}</span>
+            results.innerHTML = matches.slice(0, 5).map(post => 
+                `<a href="${post.permalink}" class="sidebar-post">
+                    <span class="sidebar-post-title">${post.title}</span>
                 </a>`
             ).join('');
         }
 
-        // Close search on ESC
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                document.getElementById('search-container').classList.remove('active');
-                closeLightbox();
-            }
-        });
-
-        // Load search index on page load
         loadSearchIndex();
 
         // Lightbox
@@ -190,6 +209,8 @@
             document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = '';
         }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
         document.addEventListener('DOMContentLoaded', function() {
             // Wrap images with expand hint
