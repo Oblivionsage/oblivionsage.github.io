@@ -364,3 +364,8 @@ pre:hover .copy-btn {
     font-size: 0.9rem;
     margin-top: -15px;
 }
+
+/* Headings turuncu */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent);
+}
