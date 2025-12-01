@@ -1,6 +1,7 @@
 ---
 title: "About"
 layout: "single"
+showDate: false
 ---
 
 ## Whoami
