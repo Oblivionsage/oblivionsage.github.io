@@ -596,3 +596,20 @@ article p:has(img):hover::after {
 .img-wrapper:hover .expand-hint {
     opacity: 1;
 }
+
+/* Mobile fix for image wrapper */
+@media (max-width: 600px) {
+    .img-wrapper {
+        display: block;
+        width: 100%;
+    }
+    
+    .img-wrapper img {
+        width: 100%;
+    }
+    
+    .expand-hint {
+        bottom: 25px;
+        right: 25px;
+    }
+}
