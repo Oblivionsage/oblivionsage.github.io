@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
+    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta property="og:image" content="{{ .Site.BaseURL }}og-image.png">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}">
+    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}og-image.png">
+    <meta name="twitter:creator" content="@theoblivionsage">
+    
     <link rel="stylesheet" href="/css/terminal.css">
     <link rel="stylesheet" href="/css/custom.css">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <meta property="og:image" content="/og-image.png">
+    <link rel="canonical" href="{{ .Permalink }}">
     {{ with .OutputFormats.Get "rss" -}}
     <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
     {{- end }}
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+
     <div class="container">
         <header class="terminal-header">
             <a href="/" class="logo-link">
@@ -58,6 +76,9 @@
         </footer>
     </div>
 
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</button>
+
     <!-- Lightbox -->
     <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
         <button class="lightbox-close-btn" onclick="closeLightbox(event)">✕</button>
@@ -76,6 +97,26 @@
 
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+            
+            // Back to top visibility
+            const btn = document.getElementById('back-to-top');
+            if (winScroll > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // Search
         let searchIndex = [];
