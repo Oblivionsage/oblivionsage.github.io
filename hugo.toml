@@ -3,7 +3,8 @@ languageCode = 'en-us'
 title = 'oblivionsage'
 
 [params]
-  description = 'Vulnerability Research & Cybersecurity — Reversing · Fuzzing · C/C++ · Assembly'
+  description = 'Security Researcher & Reverse Engineer'
+  tagline = 'Finding vulnerabilities in real-world systems.'
 
 [taxonomies]
   tag = 'tags'

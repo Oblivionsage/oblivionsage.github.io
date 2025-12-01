@@ -1,6 +1,9 @@
 {{ define "main" }}
-<h1>{{ .Site.Title }}</h1>
-<p>{{ .Site.Params.description }}</p>
+<div class="hero">
+    <h1 class="hero-title">{{ .Site.Title }}</h1>
+    <p class="hero-subtitle">{{ .Site.Params.description }}</p>
+    <p class="hero-tagline">{{ .Site.Params.tagline }}</p>
+</div>
 
 <h2>Latest Posts</h2>
 <ul class="post-list">
