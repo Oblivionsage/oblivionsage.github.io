@@ -8,6 +8,9 @@ title = 'oblivionsage'
 [taxonomies]
   tag = 'tags'
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

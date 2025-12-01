@@ -33,7 +33,14 @@
             <a href="/posts/">Posts</a>
             <a href="/tags/">Tags</a>
             <a href="/pgp/">PGP</a>
+            <button class="search-btn" onclick="toggleSearch()">Search</button>
         </nav>
+
+        <!-- Search Box -->
+        <div class="search-container" id="search-container">
+            <input type="text" id="search-input" placeholder="Search posts..." onkeyup="searchPosts()">
+            <div class="search-results" id="search-results"></div>
+        </div>
 
         <main>
             {{ block "main" . }}{{ end }}
@@ -70,6 +77,65 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
+        // Search
+        let searchIndex = [];
+
+        async function loadSearchIndex() {
+            try {
+                const response = await fetch('/index.json');
+                searchIndex = await response.json();
+            } catch (e) {
+                console.log('Search index not available');
+            }
+        }
+
+        function toggleSearch() {
+            const container = document.getElementById('search-container');
+            container.classList.toggle('active');
+            if (container.classList.contains('active')) {
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function searchPosts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const results = document.getElementById('search-results');
+            
+            if (query.length < 2) {
+                results.innerHTML = '';
+                return;
+            }
+
+            const matches = searchIndex.filter(post => 
+                post.title.toLowerCase().includes(query) ||
+                post.content.toLowerCase().includes(query) ||
+                (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query)))
+            );
+
+            if (matches.length === 0) {
+                results.innerHTML = '<div class="search-result-item">No results found</div>';
+                return;
+            }
+
+            results.innerHTML = matches.map(post => 
+                `<a href="${post.permalink}" class="search-result-item">
+                    <span class="search-result-title">${post.title}</span>
+                    <span class="search-result-date">${post.date}</span>
+                </a>`
+            ).join('');
+        }
+
+        // Close search on ESC
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.getElementById('search-container').classList.remove('active');
+                closeLightbox();
+            }
+        });
+
+        // Load search index on page load
+        loadSearchIndex();
+
         // Lightbox
         function openLightbox(img) {
             document.getElementById('lightbox-img').src = img.src;
@@ -82,8 +148,6 @@
             document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = '';
         }
-
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
         document.addEventListener('DOMContentLoaded', function() {
             // Wrap images with expand hint
