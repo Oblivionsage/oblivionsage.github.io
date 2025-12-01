@@ -33,6 +33,33 @@ html[data-theme="light"] .terminal-logo {
     color: var(--bg-light);
 }
 
+/* ========== CUSTOM SCROLLBAR ========== */
+/* Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+    border: 1px solid rgba(255, 102, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff8533;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) var(--background);
+}
+
 /* ========== LAYOUT ========== */
 .container {
     max-width: 1100px;
@@ -182,8 +209,6 @@ main {
     position: sticky;
     top: 20px;
     height: fit-content;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
 }
 
 .sidebar-section {
@@ -233,10 +258,32 @@ main {
     padding: 5px 0;
 }
 
+/* Sidebar posts with scroll */
 .sidebar-posts {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Sidebar posts custom scrollbar */
+.sidebar-posts::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-posts::-webkit-scrollbar-track {
+    background: rgba(255, 102, 0, 0.1);
+    border: 1px solid rgba(255, 102, 0, 0.3);
+}
+
+.sidebar-posts::-webkit-scrollbar-thumb {
+    background: var(--accent);
+}
+
+.sidebar-posts::-webkit-scrollbar-thumb:hover {
+    background: #ff8533;
 }
 
 .sidebar-post {

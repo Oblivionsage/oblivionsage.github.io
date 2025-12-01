@@ -71,7 +71,7 @@
                     <div class="sidebar-section">
                         <div class="sidebar-title">latest posts</div>
                         <div class="sidebar-posts">
-                            {{ range first 5 (where .Site.RegularPages "Section" "posts") }}
+                            {{ range (where .Site.RegularPages "Section" "posts") }}
                             <a href="{{ .Permalink }}" class="sidebar-post">
                                 <span class="sidebar-post-title">{{ .Title }}</span>
                                 <span class="sidebar-post-date">{{ .Date.Format "01-02" }}</span>
