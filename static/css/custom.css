@@ -868,3 +868,23 @@ pre {
         padding: 30px 0;
     }
 }
+
+/* Search button responsive */
+.search-icon {
+    display: none;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+    .search-text {
+        display: none;
+    }
+    
+    .search-icon {
+        display: inline;
+    }
+    
+    .search-btn {
+        padding: 5px 10px;
+    }
+}
