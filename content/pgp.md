@@ -2,7 +2,6 @@
 showDate: false
 title: "PGP"
 layout: "single"
-showDate: false
 ---
 
 ## public key
