@@ -52,16 +52,9 @@
     </div>
 
     <!-- Lightbox -->
-    <div class="lightbox-overlay" id="lightbox">
-        <div class="lightbox-header">
-            <button class="lightbox-btn lightbox-close" onclick="closeLightbox()"></button>
-            <button class="lightbox-btn lightbox-minimize"></button>
-            <button class="lightbox-btn lightbox-maximize"></button>
-            <span class="lightbox-title" id="lightbox-title">image.png</span>
-        </div>
-        <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="">
-        </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close-btn" onclick="closeLightbox(event)">✕</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
     </div>
 
     <script>
@@ -74,59 +67,41 @@
             localStorage.setItem('theme', newTheme);
         }
 
-        // Load saved theme
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
         // Lightbox
         function openLightbox(img) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxTitle = document.getElementById('lightbox-title');
-            
-            lightboxImg.src = img.src;
-            lightboxTitle.textContent = img.alt || 'image.png';
-            lightbox.classList.add('active');
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
+        function closeLightbox(e) {
+            if (e) e.stopPropagation();
+            document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // Close on overlay click
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this || e.target.classList.contains('lightbox-content')) {
-                closeLightbox();
-            }
-        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-        // Close on ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeLightbox();
-        });
-
-        // Add click to all article images
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('article img').forEach(img => {
                 img.style.cursor = 'pointer';
                 img.addEventListener('click', () => openLightbox(img));
             });
 
-            // Copy code button
             document.querySelectorAll('pre').forEach(block => {
-                const button = document.createElement('button');
-                button.className = 'copy-btn';
-                button.textContent = 'Copy';
-                button.addEventListener('click', () => {
+                const btn = document.createElement('button');
+                btn.className = 'copy-btn';
+                btn.textContent = 'Copy';
+                btn.onclick = () => {
                     navigator.clipboard.writeText(block.querySelector('code').textContent);
-                    button.textContent = 'Copied!';
-                    setTimeout(() => button.textContent = 'Copy', 2000);
-                });
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => btn.textContent = 'Copy', 2000);
+                };
                 block.style.position = 'relative';
-                block.appendChild(button);
+                block.appendChild(btn);
             });
         });
     </script>
