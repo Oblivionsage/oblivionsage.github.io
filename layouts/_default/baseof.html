@@ -86,11 +86,22 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
         document.addEventListener('DOMContentLoaded', function() {
+            // Wrap images with expand hint
             document.querySelectorAll('article img').forEach(img => {
-                img.style.cursor = 'pointer';
-                img.addEventListener('click', () => openLightbox(img));
+                const wrapper = document.createElement('div');
+                wrapper.className = 'img-wrapper';
+                img.parentNode.insertBefore(wrapper, img);
+                wrapper.appendChild(img);
+                
+                const hint = document.createElement('span');
+                hint.className = 'expand-hint';
+                hint.innerHTML = '⤢ expand';
+                wrapper.appendChild(hint);
+                
+                wrapper.addEventListener('click', () => openLightbox(img));
             });
 
+            // Copy code button
             document.querySelectorAll('pre').forEach(block => {
                 const btn = document.createElement('button');
                 btn.className = 'copy-btn';

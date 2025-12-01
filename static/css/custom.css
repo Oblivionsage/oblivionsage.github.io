@@ -571,3 +571,28 @@ article p:has(img)::after {
 article p:has(img):hover::after {
     opacity: 1;
 }
+
+/* Image wrapper with expand hint */
+.img-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin: 25px 0;
+}
+
+.expand-hint {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: var(--background);
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.img-wrapper:hover .expand-hint {
+    opacity: 1;
+}
