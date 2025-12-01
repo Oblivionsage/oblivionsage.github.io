@@ -5,6 +5,7 @@ title = 'oblivionsage'
 [params]
   description = 'Security Researcher & Reverse Engineer'
   tagline = 'Finding vulnerabilities in real-world systems.'
+  skills = 'Memory Safety · Cryptography · Fuzzing · Reverse Engineering'
 
 [taxonomies]
   tag = 'tags'
