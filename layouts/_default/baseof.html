@@ -51,6 +51,19 @@
         </footer>
     </div>
 
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <div class="lightbox-header">
+            <button class="lightbox-btn lightbox-close" onclick="closeLightbox()"></button>
+            <button class="lightbox-btn lightbox-minimize"></button>
+            <button class="lightbox-btn lightbox-maximize"></button>
+            <span class="lightbox-title" id="lightbox-title">image.png</span>
+        </div>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
     <script>
         // Theme toggle
         function toggleTheme() {
@@ -65,18 +78,56 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
-        // Copy code button
-        document.querySelectorAll('pre').forEach(block => {
-            const button = document.createElement('button');
-            button.className = 'copy-btn';
-            button.textContent = 'Copy';
-            button.addEventListener('click', () => {
-                navigator.clipboard.writeText(block.querySelector('code').textContent);
-                button.textContent = 'Copied!';
-                setTimeout(() => button.textContent = 'Copy', 2000);
+        // Lightbox
+        function openLightbox(img) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            
+            lightboxImg.src = img.src;
+            lightboxTitle.textContent = img.alt || 'image.png';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on overlay click
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this || e.target.classList.contains('lightbox-content')) {
+                closeLightbox();
+            }
+        });
+
+        // Close on ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Add click to all article images
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('article img').forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', () => openLightbox(img));
             });
-            block.style.position = 'relative';
-            block.appendChild(button);
+
+            // Copy code button
+            document.querySelectorAll('pre').forEach(block => {
+                const button = document.createElement('button');
+                button.className = 'copy-btn';
+                button.textContent = 'Copy';
+                button.addEventListener('click', () => {
+                    navigator.clipboard.writeText(block.querySelector('code').textContent);
+                    button.textContent = 'Copied!';
+                    setTimeout(() => button.textContent = 'Copy', 2000);
+                });
+                block.style.position = 'relative';
+                block.appendChild(button);
+            });
         });
     </script>
 </body>
