@@ -4,8 +4,6 @@ date: 2025-11-16
 tags: ["Cryptography", "BLS", "Pedersen", "CTF", "zkHack", "DomainSeparation", "ZeroKnowledge"]
 ---
 
-# zkHack BLS-Pedersen Challenge — How I Wasted 3 Hours Before Realizing the Challenge Was Already Solved
-
 **Author:** oblivionsage
 
 **TL;DR:** Sometimes the simplest solution is staring you in the face. Overthinking kills you. If the challenge gives you 256 valid signatures, maybe the real trick is to realize you don't need to forge anything.
