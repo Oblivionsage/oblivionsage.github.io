@@ -213,7 +213,7 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('article img').forEach(img => {
+            document.querySelectorAll('article p > img, article > img').forEach(img => {
                 const wrapper = document.createElement('div');
                 wrapper.className = 'img-wrapper';
                 img.parentNode.insertBefore(wrapper, img);
