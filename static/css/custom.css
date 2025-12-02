@@ -58,11 +58,11 @@ html[data-theme="light"] .terminal-logo {
     scrollbar-color: var(--accent) var(--background);
 }
 
-/* ========== LAYOUT - WIDER ========== */
+/* ========== LAYOUT - FULL WIDTH ========== */
 .container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 20px 40px;
+    padding: 25px 50px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -70,13 +70,14 @@ html[data-theme="light"] .terminal-logo {
 
 .content-wrapper {
     display: flex;
-    gap: 50px;
+    gap: 60px;
+    justify-content: space-between;
 }
 
 main {
     flex: 1;
     min-width: 0;
-    max-width: 900px;
+    max-width: 1000px;
 }
 
 /* ========== HEADER ========== */
@@ -84,8 +85,8 @@ main {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
     border-bottom: 2px solid var(--accent);
     box-shadow: 0 4px 8px rgba(255, 102, 0, 0.1);
 }
@@ -97,9 +98,9 @@ main {
 .terminal-logo {
     background: var(--accent);
     color: var(--background);
-    padding: 8px 15px;
+    padding: 10px 18px;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1rem;
     white-space: nowrap;
     box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
     transition: box-shadow 0.3s;
@@ -115,7 +116,7 @@ main {
     overflow: hidden;
     flex: 1;
     font-weight: bold;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 }
 
 .cursor {
@@ -148,9 +149,9 @@ main {
 /* ========== NAVIGATION ========== */
 .nav {
     display: flex;
-    gap: 25px;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
+    gap: 30px;
+    margin-bottom: 35px;
+    padding-bottom: 18px;
     border-bottom: 1px solid var(--accent);
     box-shadow: 0 4px 8px rgba(255, 102, 0, 0.15);
     flex-wrap: wrap;
@@ -161,7 +162,7 @@ main {
     color: var(--foreground);
     text-decoration: none;
     transition: color 0.2s, text-shadow 0.2s;
-    font-size: 1rem;
+    font-size: 1.05rem;
 }
 
 .nav a:hover {
@@ -172,68 +173,69 @@ main {
 /* ========== HERO SECTION ========== */
 .hero {
     text-align: center;
-    padding: 60px 0;
-    margin-bottom: 40px;
+    padding: 70px 0;
+    margin-bottom: 45px;
     border-bottom: 1px solid var(--accent);
 }
 
 .hero-title {
-    font-size: 3rem;
-    margin-bottom: 15px;
+    font-size: 3.2rem;
+    margin-bottom: 18px;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--accent);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .hero-skills {
     color: var(--accent);
-    font-size: 1rem;
-    margin-bottom: 15px;
+    font-size: 1.05rem;
+    margin-bottom: 18px;
     letter-spacing: 0.5px;
 }
 
 .hero-tagline {
-    font-size: 1rem;
+    font-size: 1.1rem;
     opacity: 0.6;
 }
 
-/* ========== SIDEBAR ========== */
+/* ========== SIDEBAR - RIGHT ALIGNED ========== */
 .sidebar {
-    width: 250px;
+    width: 280px;
     flex-shrink: 0;
     position: sticky;
-    top: 20px;
+    top: 25px;
     height: fit-content;
+    align-self: flex-start;
 }
 
 .sidebar-section {
     background: rgba(255, 102, 0, 0.03);
     border: 1px solid var(--accent);
-    padding: 15px;
-    margin-bottom: 15px;
+    padding: 18px;
+    margin-bottom: 18px;
 }
 
 .sidebar-title {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     text-transform: lowercase;
     color: var(--foreground);
     opacity: 0.6;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
     border-bottom: 1px solid var(--accent);
 }
 
 .sidebar-search {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px 14px;
     background: transparent;
     border: 1px solid var(--accent);
     color: var(--foreground);
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
 
 .sidebar-search:focus {
@@ -247,11 +249,11 @@ main {
 }
 
 .sidebar-search-results {
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .sidebar-no-results {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     opacity: 0.5;
     padding: 5px 0;
 }
@@ -259,10 +261,10 @@ main {
 .sidebar-posts {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: 250px;
+    gap: 12px;
+    max-height: 280px;
     overflow-y: auto;
-    padding-right: 8px;
+    padding-right: 10px;
 }
 
 .sidebar-posts::-webkit-scrollbar {
@@ -286,11 +288,11 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
     text-decoration: none;
     color: var(--foreground);
-    font-size: 0.85rem;
-    padding: 8px 0;
+    font-size: 0.9rem;
+    padding: 10px 0;
     border-bottom: 1px dashed rgba(255, 102, 0, 0.2);
     transition: color 0.2s;
 }
@@ -309,7 +311,7 @@ main {
 }
 
 .sidebar-post-date {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     opacity: 0.5;
     white-space: nowrap;
 }
@@ -317,13 +319,13 @@ main {
 .sidebar-links {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
 .sidebar-links a {
     color: var(--foreground);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     transition: color 0.2s;
 }
 
@@ -332,18 +334,18 @@ main {
 }
 
 .sidebar-info {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     opacity: 0.6;
 }
 
 .sidebar-top-btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     background: transparent;
     border: 1px solid var(--accent);
     color: var(--accent);
     font-family: inherit;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -362,7 +364,7 @@ main {
 }
 
 .post-list li {
-    padding: 20px 0;
+    padding: 22px 0;
     border-bottom: 1px solid var(--accent);
 }
 
@@ -371,22 +373,22 @@ main {
 }
 
 .post-title {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
 }
 
 .post-date {
     color: var(--foreground);
     opacity: 0.6;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 /* ========== POST META ========== */
 .post-meta {
     color: var(--foreground);
     opacity: 0.7;
-    font-size: 0.95rem;
-    margin-bottom: 15px;
+    font-size: 1rem;
+    margin-bottom: 18px;
 }
 
 .reading-time {
@@ -395,19 +397,19 @@ main {
 
 /* ========== TAGS ========== */
 .post-tags {
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .tag {
     display: inline-block;
     background: transparent;
     color: var(--accent);
-    padding: 5px 12px;
-    margin-right: 10px;
-    margin-bottom: 8px;
+    padding: 6px 14px;
+    margin-right: 12px;
+    margin-bottom: 10px;
     border: 1px solid var(--accent);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     transition: all 0.2s;
 }
 
@@ -420,14 +422,14 @@ main {
 .tags-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 14px;
 }
 
 .tag-cloud-item {
     display: inline-block;
     background: transparent;
     color: var(--accent);
-    padding: 6px 14px;
+    padding: 8px 16px;
     border: 1px solid var(--accent);
     text-decoration: none;
     transition: all 0.2s;
@@ -445,8 +447,8 @@ main {
 
 /* ========== FOOTER ========== */
 .footer {
-    margin-top: 60px;
-    padding-top: 25px;
+    margin-top: 70px;
+    padding-top: 30px;
     border-top: 2px solid var(--accent);
     text-align: center;
 }
@@ -454,18 +456,18 @@ main {
 .footer-links {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 30px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .footer-links a {
     color: var(--accent);
     text-decoration: none;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border: 1px solid transparent;
     transition: all 0.3s;
-    font-size: 0.95rem;
+    font-size: 1rem;
 }
 
 .footer-links a:hover {
@@ -477,34 +479,34 @@ main {
 .copyright {
     color: var(--foreground);
     opacity: 0.6;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 /* ========== ARTICLE CONTENT ========== */
 article {
-    line-height: 1.8;
-    font-size: 1.05rem;
+    line-height: 1.85;
+    font-size: 1.1rem;
 }
 
 article p {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.6em;
 }
 
 article h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin-bottom: 22px;
 }
 
 article h2 {
-    font-size: 1.5rem;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    font-size: 1.6rem;
+    margin-top: 45px;
+    margin-bottom: 22px;
 }
 
 article h3 {
-    font-size: 1.25rem;
-    margin-top: 30px;
-    margin-bottom: 15px;
+    font-size: 1.35rem;
+    margin-top: 35px;
+    margin-bottom: 18px;
 }
 
 /* ========== ARTICLE IMAGES - FIXED ========== */
@@ -512,7 +514,7 @@ article img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 25px 0;
+    margin: 28px 0;
     border: 4px solid var(--accent);
     padding: 8px;
     background: var(--background);
@@ -522,7 +524,7 @@ article img {
     position: relative;
     display: block;
     cursor: pointer;
-    margin: 25px 0;
+    margin: 28px 0;
     max-width: 100%;
 }
 
@@ -534,12 +536,12 @@ article img {
 
 .expand-hint {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 22px;
+    right: 22px;
     background: var(--accent);
     color: var(--background);
-    padding: 5px 10px;
-    font-size: 0.75rem;
+    padding: 6px 12px;
+    font-size: 0.8rem;
     font-weight: bold;
     opacity: 0;
     transition: opacity 0.2s;
@@ -558,12 +560,12 @@ pre {
     background: #0d1117 !important;
     border: 1px solid #30363d !important;
     border-radius: 6px !important;
-    padding: 20px !important;
+    padding: 22px !important;
     overflow-x: auto;
     position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 102, 0, 0.03);
-    margin: 25px 0;
-    font-size: 0.95rem;
+    margin: 28px 0;
+    font-size: 1rem;
 }
 
 pre code {
@@ -577,21 +579,21 @@ pre code {
 code {
     background: #0d1117;
     color: #c9d1d9;
-    padding: 3px 8px;
+    padding: 4px 10px;
     border: 1px solid #30363d;
     border-radius: 4px;
-    font-size: 0.9em;
+    font-size: 0.92em;
 }
 
 .copy-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     background: var(--accent);
     color: #000;
     border: none;
-    padding: 5px 12px;
-    font-size: 0.8rem;
+    padding: 6px 14px;
+    font-size: 0.85rem;
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.2s;
@@ -618,7 +620,7 @@ pre:hover .copy-btn {
 
 /* ========== VIDEO EMBED ========== */
 .video-container {
-    margin: 25px 0;
+    margin: 28px 0;
     border: 4px solid var(--accent);
     padding: 8px;
     background: var(--background);
@@ -649,14 +651,14 @@ pre:hover .copy-btn {
 
 .lightbox-close-btn {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
     background: transparent;
     border: 2px solid var(--accent);
     color: var(--accent);
-    font-size: 26px;
+    font-size: 28px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -692,15 +694,15 @@ pre:hover .copy-btn {
 /* ========== BACK TO TOP ========== */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
+    bottom: 35px;
+    right: 35px;
+    width: 55px;
+    height: 55px;
     background: var(--accent);
     color: var(--background);
     border: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s;
@@ -749,14 +751,28 @@ h2 {
 }
 
 /* ========== MOBILE RESPONSIVE ========== */
+@media (max-width: 1400px) {
+    .container {
+        padding: 25px 35px;
+    }
+    
+    .sidebar {
+        width: 260px;
+    }
+}
+
 @media (max-width: 1200px) {
     .container {
         max-width: 100%;
-        padding: 20px 30px;
+        padding: 22px 30px;
     }
     
     main {
         max-width: none;
+    }
+    
+    .sidebar {
+        width: 240px;
     }
 }
 
@@ -805,11 +821,11 @@ h2 {
     }
 
     .hero {
-        padding: 30px 0;
+        padding: 35px 0;
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .footer-links {
@@ -817,16 +833,16 @@ h2 {
     }
 
     article h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     article h2 {
-        font-size: 1.25rem;
+        font-size: 1.35rem;
     }
 
     pre {
-        padding: 15px !important;
-        font-size: 0.85rem !important;
+        padding: 16px !important;
+        font-size: 0.9rem !important;
     }
 
     .copy-btn {
@@ -836,8 +852,8 @@ h2 {
     .back-to-top {
         bottom: 20px;
         right: 20px;
-        width: 45px;
-        height: 45px;
+        width: 48px;
+        height: 48px;
     }
 
     .expand-hint {
