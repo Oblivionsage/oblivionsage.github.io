@@ -83,7 +83,9 @@ cp ext/exif/tests/image029.heic poc.heic
 
 First, I found where the iloc extent_length field lives:
 
-<img width="883" height="132" alt="image" src="https://github.com/user-attachments/assets/4f8edd77-49d2-44b7-80d3-6fa9e62cd3b6" />
+<img width="883" height="132" alt="521047026-4f8edd77-49d2-44b7-80d3-6fa9e62cd3b6" src="https://github.com/user-attachments/assets/d3cd954a-c230-4331-b984-8359474b3ddc" />
+
+
 
 ```bash
 $ xxd -s 0x4f0 -l 16 poc.heic
@@ -109,7 +111,8 @@ Why this works: when extent_length = 1, `pos.size` becomes 1. Then `pos.size - 2
 
 ## Triggering the Bug
 
-<img width="1900" height="355" alt="image" src="https://github.com/user-attachments/assets/94a8a852-b4a2-47cc-93a2-f221de68d810" />
+<img width="1900" height="355" alt="521047425-94a8a852-b4a2-47cc-93a2-f221de68d810" src="https://github.com/user-attachments/assets/b8854db8-bf57-4cb9-9029-06b53be50920" />
+
 
 ```bash
 $ php -d memory_limit=128M -r "exif_read_data('poc_underflow.heic');"
@@ -129,7 +132,8 @@ $ strace -e mmap php -d memory_limit=8G -r "exif_read_data('poc_underflow.heic')
 
 mmap(NULL, 4294967296, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f0381200000
 ```
-<img width="1362" height="786" alt="image" src="https://github.com/user-attachments/assets/e399b588-90e6-420e-b669-d3f3eedf33c5" />
+
+<img width="1362" height="786" alt="521047683-e399b588-90e6-420e-b669-d3f3eedf33c5" src="https://github.com/user-attachments/assets/d0bb2a54-b2f5-4eeb-9711-55104acc7a2f" />
 
 4GB mmap. The kernel actually allocated it because I set memory_limit high enough. Definitive proof.
 
@@ -147,7 +151,7 @@ $ gdb -q php-src/sapi/cli/php
 
 ### Breakpoint 1: The Underflow Moment
 
-<img width="1507" height="863" alt="image" src="https://github.com/user-attachments/assets/0cf50a76-5a4c-41a0-a79d-d1558837e29f" />
+<img width="1507" height="863" alt="521048924-0cf50a76-5a4c-41a0-a79d-d1558837e29f" src="https://github.com/user-attachments/assets/60220006-3f82-4bf7-8031-f81574ad8689" />
 
 ```bash
 pwndbg> print pos
@@ -167,7 +171,8 @@ There it is. `pos.size = 1` from our patched iloc box. The subtraction wraps to 
 
 ### Breakpoint 2: Before emalloc()
 
-<img width="686" height="677" alt="image" src="https://github.com/user-attachments/assets/0dfa5ea8-e874-42c8-8be9-f535f3254f6a" />
+<img width="686" height="677" alt="521049472-0dfa5ea8-e874-42c8-8be9-f535f3254f6a" src="https://github.com/user-attachments/assets/74077269-86db-4876-bbdd-8702db05fb18" />
+
 
 ```bash
 pwndbg> print limit
@@ -181,7 +186,8 @@ The underflowed value is now in `limit`, about to be passed to emalloc().
 
 ### Register State at emalloc() Call
 
-<img width="1798" height="571" alt="image" src="https://github.com/user-attachments/assets/fe551ef6-7dc0-4118-ab8f-365600ad6c44" />
+<img width="1798" height="571" alt="521050087-fe551ef6-7dc0-4118-ab8f-365600ad6c44" src="https://github.com/user-attachments/assets/4ca23f96-7bc0-496a-8ee3-2cf5293a2b27" />
+
 
 ```bash
 ─────────────────────────────[ DISASM ]─────────────────────────────
@@ -192,7 +198,9 @@ pwndbg> info registers rdi rax
 rdi    0xffffffff    4294967295
 rax    0xffffffff    4294967295
 ```
-<img width="1895" height="233" alt="image" src="https://github.com/user-attachments/assets/4d5f053a-97f5-4a71-be65-e13af3e84f01" />
+
+<img width="1895" height="233" alt="521051289-4d5f053a-97f5-4a71-be65-e13af3e84f01" src="https://github.com/user-attachments/assets/0a8c9701-9273-4834-ad8f-7e656101c84f" />
+
 
 RDI holds the first argument to `_emalloc()`. The value 0xFFFFFFFF (4294967295) is the allocation size - approximately 4GB. This is the smoking gun.
 
