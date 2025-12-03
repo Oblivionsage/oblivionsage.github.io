@@ -263,7 +263,8 @@ bool(false)
 
 ## PR Accepted
 
-<img width="981" height="922" alt="image" src="https://github.com/user-attachments/assets/53be3ba5-f683-47b9-ab1e-d9e2ef9e647f" />
+<img width="1917" height="852" alt="image" src="https://github.com/user-attachments/assets/0d7a2dc8-0bdc-4118-aa7b-d2cdb7c9d024" />
+
 
 
 The maintainer reviewed and approved:
@@ -285,7 +286,7 @@ But here's the thing , the bug is real, the code is cleaner now, and I learned a
 
 Sometimes the win isn't a CVE , it's getting a fix merged and learning how major open source projects handle security reports
 
-**Status:** PR #20630 approved, pending merge.
+**Status:** Merged in this commit : `6a0da6dc2e53875ee98edfa4ec89a76585897a78`
 
 ---
 
@@ -300,7 +301,7 @@ Sometimes the win isn't a CVE , it's getting a fix merged and learning how major
 
 **Affected versions:** PHP 8.3.0+ (HEIF support added in 8.3)
 
-**Fix:** [PR #20630](https://github.com/php/php-src/pull/20630)
+**Fix:** [Commit](https://github.com/php/php-src/commit/6a0da6dc2e53875ee98edfa4ec89a76585897a78)
 
 ---
 *Interested in security research? Check out my other writeups.*
