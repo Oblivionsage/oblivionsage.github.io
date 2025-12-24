@@ -1,6 +1,6 @@
 ---
 title: "Agent Name Length Validation Bypass in SPIRE httpchallenge Plugin"
-date: 2025-12-24
+date: 2025-07-16
 tags: ["ValidationBypass", "SPIRE", "InputValidation", "Go", "OpenSource"]
 ---
 
