@@ -107,7 +107,7 @@ ASan confirms exact location , line 469 in `check_segment()`, the `isxdigit(s[2]
 
 ## The Fix
 
-Maintainer pushed fix within 20 minutes. One character change:
+Maintainer pushed fix. One character change:
 ```c
 - if (length < 2 || !(isxdigit(s[1]) && isxdigit(s[2])))
 + if (length < 3 || !(isxdigit(s[1]) && isxdigit(s[2])))
@@ -152,7 +152,7 @@ What I learned:
 - December 28, 2025: Bug discovered during code audit
 - December 28, 2025: Reported to libcoap-security@tzi.org
 - December 29, 2025: Maintainer response, confirmed bug
-- December 29, 2025: Fix merged (20 minutes after report)
+- December 29, 2025: Fix merged
 
 **Affected:** libcoap versions with `coap_split_path()` API
 **Fix:** Commit `dadb9a3` on develop branch
