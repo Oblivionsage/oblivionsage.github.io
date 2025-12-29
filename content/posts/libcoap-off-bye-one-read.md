@@ -1,6 +1,6 @@
 ---
 title: "Off-by-One Read in libcoap check_segment() Percent-Encoding Validation"
-date: 2025-12-28
+date: 2025-12-29
 tags: ["MemorySafety", "libcoap", "CoAP", "C", "OpenSource", "ASan"]
 ---
 
